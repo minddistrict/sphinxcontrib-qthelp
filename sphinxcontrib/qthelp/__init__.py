@@ -6,7 +6,6 @@ import html
 import os
 import posixpath
 import re
-from collections.abc import Iterable
 from os import path
 from typing import Any, cast
 
@@ -23,8 +22,8 @@ from sphinx.util.osutil import canon_path, make_filename
 from sphinx.util.template import SphinxRenderer
 
 
-__version__ = '1.0.6'
-__version_info__ = (1, 0, 6)
+__version__ = '1.0.6+md1'
+__version_info__ = (1, 0, 6, 'md1')
 
 logger = logging.getLogger(__name__)
 package_dir = path.abspath(path.dirname(__file__))
@@ -172,7 +171,7 @@ class QtHelpBuilder(StandaloneHTMLBuilder):
             parts.append(' ' * 4 * indentlevel + item)
 
             bullet_list = cast(nodes.bullet_list, node[1])
-            list_items = cast(Iterable[nodes.list_item], bullet_list)
+            list_items = bullet_list
             for list_item in list_items:
                 parts.extend(self.write_toc(list_item, indentlevel + 1))
             parts.append(' ' * 4 * indentlevel + '</section>')
